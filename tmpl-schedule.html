@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TMPL Schedule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f3ee;
+    --surface: #ffffff;
+    --border: #e2ddd6;
+    --text: #1a1814;
+    --muted: #8a8478;
+    --accent: #1a1814;
+    --pill-astor-bg: #ede9ff; --pill-astor: #3d2fa0;
+    --pill-avenue-bg: #dff5ec; --pill-avenue: #0a5e40;
+    --pill-hells-bg: #fde8e0; --pill-hells: #8c3318;
+    --pill-west-bg: #fce8f0; --pill-west: #7a2448;
+    --pill-lex-bg: #deeeff; --pill-lex: #0c4080;
+    --pill-madison-bg: #e5f4d8; --pill-madison: #2a5210;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  header {
+    margin-bottom: 2rem;
+  }
+
+  .wordmark {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  h1 span {
+    font-weight: 500;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+
+  .day-toggle {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .day-btn {
+    padding: 7px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .day-btn.active {
+    background: var(--text);
+    color: #fff;
+  }
+
+  .sep {
+    width: 1px;
+    height: 20px;
+    background: var(--border);
+    align-self: center;
+    margin: 0 4px;
+  }
+
+  .loc-btn {
+    padding: 6px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .loc-btn:hover { border-color: var(--text); color: var(--text); }
+  .loc-btn.active-astor { background: var(--pill-astor-bg); color: var(--pill-astor); border-color: transparent; }
+  .loc-btn.active-avenue { background: var(--pill-avenue-bg); color: var(--pill-avenue); border-color: transparent; }
+  .loc-btn.active-hells { background: var(--pill-hells-bg); color: var(--pill-hells); border-color: transparent; }
+  .loc-btn.active-west { background: var(--pill-west-bg); color: var(--pill-west); border-color: transparent; }
+  .loc-btn.active-lex { background: var(--pill-lex-bg); color: var(--pill-lex); border-color: transparent; }
+  .loc-btn.active-madison { background: var(--pill-madison-bg); color: var(--pill-madison); border-color: transparent; }
+  .loc-btn.active-all { background: var(--text); color: #fff; border-color: transparent; }
+
+  .meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .refresh-btn {
+    background: none;
+    border: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    padding: 0;
+  }
+  .refresh-btn:hover { color: var(--text); }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--surface);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: border-color 0.1s;
+  }
+
+  .row:hover { border-color: #c8c2ba; }
+
+  .time-col {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .time-end {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .name-col {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .name-loc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .pill-astor { background: var(--pill-astor-bg); color: var(--pill-astor); }
+  .pill-avenue { background: var(--pill-avenue-bg); color: var(--pill-avenue); }
+  .pill-hells { background: var(--pill-hells-bg); color: var(--pill-hells); }
+  .pill-west { background: var(--pill-west-bg); color: var(--pill-west); }
+  .pill-lex { background: var(--pill-lex-bg); color: var(--pill-lex); }
+  .pill-madison { background: var(--pill-madison-bg); color: var(--pill-madison); }
+
+  .state {
+    text-align: center;
+    padding: 3rem 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .error-msg {
+    background: #fff5f5;
+    border: 1px solid #f5c6c6;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-size: 13px;
+    color: #8c2020;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    .row { grid-template-columns: 70px 1fr; }
+    .pill { display: none; }
+    .name-loc { display: block; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="wordmark">TMPL NYC</div>
+    <h1>Class <span>Schedule</span></h1>
+  </header>
+
+  <div class="controls">
+    <div class="day-toggle">
+      <button class="day-btn active" id="btn-today" onclick="setDay('today')">Today</button>
+      <button class="day-btn" id="btn-tomorrow" onclick="setDay('tomorrow')">Tomorrow</button>
+    </div>
+    <div class="sep"></div>
+    <button class="loc-btn active-all" data-loc="all" onclick="setLoc(this,'all')">All</button>
+    <button class="loc-btn" data-loc="Astor" onclick="setLoc(this,'Astor')">Astor Pl</button>
+    <button class="loc-btn" data-loc="Avenue" onclick="setLoc(this,'Avenue')">Avenue A</button>
+    <button class="loc-btn" data-loc="Kitchen" onclick="setLoc(this,'Kitchen')">Hell's Kitchen</button>
+    <button class="loc-btn" data-loc="West" onclick="setLoc(this,'West')">West Village</button>
+    <button class="loc-btn" data-loc="Lexington" onclick="setLoc(this,'Lexington')">Lexington</button>
+    <button class="loc-btn" data-loc="Madison" onclick="setLoc(this,'Madison')">Madison</button>
+  </div>
+
+  <div class="meta">
+    <span id="count-label">—</span>
+    <button class="refresh-btn" onclick="loadData()">↻ refresh</button>
+  </div>
+
+  <div id="error-box" style="display:none" class="error-msg"></div>
+  <div id="list" class="list"></div>
+</div>
+
+<script>
+const TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaXZpc2lvbiI6MSwibmFtZSI6IlRNUEwiLCJpYXQiOjE2MTQ2MjU3NDJ9.YNNKuNfnFoOwyriEE6shZA3KbPggWAm4ZsQsBCdD6Jo';
+const API = 'https://api.empireholdings.com/api/scheduler/classes/';
+
+const LOC_MAP = {
+  'Astor': 'Astor Place',
+  'Avenue': 'Avenue A',
+  'Kitchen': "Hell's Kitchen",
+  'West': 'West Village',
+  'Lexington': 'Lexington',
+  'Madison': 'Madison'
+};
+
+const LOC_PILL = {
+  'Astor Place': 'pill-astor',
+  'Avenue A': 'pill-avenue',
+  "Hell's Kitchen": 'pill-hells',
+  'West Village': 'pill-west',
+  'Lexington': 'pill-lex',
+  'Madison': 'pill-madison'
+};
+
+const LOC_BTN_CLASS = {
+  'all': 'active-all',
+  'Astor': 'active-astor',
+  'Avenue': 'active-avenue',
+  'Kitchen': 'active-hells',
+  'West': 'active-west',
+  'Lexington': 'active-lex',
+  'Madison': 'active-madison'
+};
+
+let allClasses = [];
+let activeDay = 'today';
+let activeLoc = 'all';
+
+function toET(utcStr) {
+  return new Date(new Date(utcStr).toLocaleString('en-US', { timeZone: 'America/New_York' }));
+}
+
+function formatTime(utcStr) {
+  const d = toET(utcStr);
+  let h = d.getHours(), m = d.getMinutes();
+  const ampm = h >= 12 ? 'pm' : 'am';
+  h = h % 12 || 12;
+  return h + (m ? ':' + String(m).padStart(2, '0') : '') + '\u202f' + ampm;
+}
+
+function getETDateStr(utcStr) {
+  return toET(utcStr).toDateString();
+}
+
+function getTodayET() {
+  return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })).toDateString();
+}
+
+function getTomorrowET() {
+  const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
+  d.setDate(d.getDate() + 1);
+  return d.toDateString();
+}
+
+function setDay(day) {
+  activeDay = day;
+  document.getElementById('btn-today').classList.toggle('active', day === 'today');
+  document.getElementById('btn-tomorrow').classList.toggle('active', day === 'tomorrow');
+  render();
+}
+
+function setLoc(el, loc) {
+  activeLoc = loc;
+  document.querySelectorAll('.loc-btn').forEach(b => {
+    b.className = 'loc-btn';
+  });
+  el.classList.add(LOC_BTN_CLASS[loc] || 'active-all');
+  render();
+}
+
+function render() {
+  const targetDate = activeDay === 'today' ? getTodayET() : getTomorrowET();
+  let filtered = allClasses.filter(c => getETDateStr(c.startDate) === targetDate);
+
+  if (activeLoc !== 'all') {
+    filtered = filtered.filter(c => c.location.includes(LOC_MAP[activeLoc] || activeLoc));
+  }
+
+  filtered.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+
+  const list = document.getElementById('list');
+  const countLabel = document.getElementById('count-label');
+  countLabel.textContent = filtered.length + ' class' + (filtered.length !== 1 ? 'es' : '');
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="state">no classes for this selection</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(c => {
+    const locName = c.location.replace('TMPL - ', '');
+    const pillClass = LOC_PILL[locName] || '';
+    return `<div class="row">
+      <div class="time-col">${formatTime(c.startDate)}<div class="time-end">→ ${formatTime(c.endDate)}</div></div>
+      <div class="name-col">${c.className}<div class="name-loc">${locName}</div></div>
+      <span class="pill ${pillClass}">${locName}</span>
+    </div>`;
+  }).join('');
+}
+
+async function loadData() {
+  const list = document.getElementById('list');
+  const errBox = document.getElementById('error-box');
+  errBox.style.display = 'none';
+  list.innerHTML = '<div class="state">loading...</div>';
+  document.getElementById('count-label').textContent = '—';
+
+  try {
+    const res = await fetch(API, {
+      headers: { 'Authorization': TOKEN }
+    });
+    if (!res.ok) throw new Error('API returned ' + res.status);
+    allClasses = await res.json();
+    render();
+  } catch (err) {
+    list.innerHTML = '';
+    errBox.style.display = 'block';
+    errBox.textContent = 'Could not load schedule. The API may be down or the token may have changed. Open DevTools → Network to grab a fresh token and update line 1 of the script. (' + err.message + ')';
+  }
+}
+
+loadData();
+</script>
+</body>
+</html>
