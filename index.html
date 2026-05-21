@@ -15,7 +15,6 @@
     --border: #e2ddd6;
     --text: #1a1814;
     --muted: #8a8478;
-    --accent: #1a1814;
     --pill-astor-bg: #ede9ff; --pill-astor: #3d2fa0;
     --pill-avenue-bg: #dff5ec; --pill-avenue: #0a5e40;
     --pill-hells-bg: #fde8e0; --pill-hells: #8c3318;
@@ -32,14 +31,9 @@
     padding: 2rem 1rem 4rem;
   }
 
-  .container {
-    max-width: 680px;
-    margin: 0 auto;
-  }
+  .container { max-width: 680px; margin: 0 auto; }
 
-  header {
-    margin-bottom: 2rem;
-  }
+  header { margin-bottom: 2rem; }
 
   .wordmark {
     font-family: 'DM Mono', monospace;
@@ -51,23 +45,25 @@
     margin-bottom: 0.4rem;
   }
 
-  h1 {
-    font-size: 26px;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    line-height: 1.2;
+  h1 { font-size: 26px; font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; }
+  h1 span { font-weight: 500; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
   }
 
-  h1 span {
-    font-weight: 500;
-  }
+  .control-group { margin-bottom: 1rem; }
 
   .controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 1.5rem;
+    gap: 6px;
     align-items: center;
   }
 
@@ -83,29 +79,16 @@
     padding: 7px 16px;
     font-family: 'DM Sans', sans-serif;
     font-size: 13px;
-    font-weight: 400;
     background: transparent;
     border: none;
     color: var(--muted);
     cursor: pointer;
     transition: all 0.15s;
   }
+  .day-btn.active { background: var(--text); color: #fff; }
 
-  .day-btn.active {
-    background: var(--text);
-    color: #fff;
-  }
-
-  .sep {
-    width: 1px;
-    height: 20px;
-    background: var(--border);
-    align-self: center;
-    margin: 0 4px;
-  }
-
-  .loc-btn {
-    padding: 6px 12px;
+  .filter-btn {
+    padding: 5px 11px;
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     font-weight: 500;
@@ -118,15 +101,33 @@
     transition: all 0.15s;
     white-space: nowrap;
   }
+  .filter-btn:hover { border-color: var(--text); color: var(--text); }
 
-  .loc-btn:hover { border-color: var(--text); color: var(--text); }
-  .loc-btn.active-astor { background: var(--pill-astor-bg); color: var(--pill-astor); border-color: transparent; }
-  .loc-btn.active-avenue { background: var(--pill-avenue-bg); color: var(--pill-avenue); border-color: transparent; }
-  .loc-btn.active-hells { background: var(--pill-hells-bg); color: var(--pill-hells); border-color: transparent; }
-  .loc-btn.active-west { background: var(--pill-west-bg); color: var(--pill-west); border-color: transparent; }
-  .loc-btn.active-lex { background: var(--pill-lex-bg); color: var(--pill-lex); border-color: transparent; }
-  .loc-btn.active-madison { background: var(--pill-madison-bg); color: var(--pill-madison); border-color: transparent; }
-  .loc-btn.active-all { background: var(--text); color: #fff; border-color: transparent; }
+  .filter-btn.active-astor { background: var(--pill-astor-bg); color: var(--pill-astor); border-color: transparent; }
+  .filter-btn.active-avenue { background: var(--pill-avenue-bg); color: var(--pill-avenue); border-color: transparent; }
+  .filter-btn.active-hells { background: var(--pill-hells-bg); color: var(--pill-hells); border-color: transparent; }
+  .filter-btn.active-west { background: var(--pill-west-bg); color: var(--pill-west); border-color: transparent; }
+  .filter-btn.active-lex { background: var(--pill-lex-bg); color: var(--pill-lex); border-color: transparent; }
+  .filter-btn.active-madison { background: var(--pill-madison-bg); color: var(--pill-madison); border-color: transparent; }
+  .filter-btn.active-all { background: var(--text); color: #fff; border-color: transparent; }
+
+  .filter-btn.cat-active {
+    background: var(--text);
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .cat-clear {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 4px;
+    letter-spacing: 0.04em;
+  }
+  .cat-clear:hover { color: var(--text); }
 
   .meta {
     font-family: 'DM Mono', monospace;
@@ -151,11 +152,7 @@
   }
   .refresh-btn:hover { color: var(--text); }
 
-  .list {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
+  .list { display: flex; flex-direction: column; gap: 2px; }
 
   .row {
     display: grid;
@@ -168,7 +165,6 @@
     border: 1px solid var(--border);
     transition: border-color 0.1s;
   }
-
   .row:hover { border-color: #c8c2ba; }
 
   .time-col {
@@ -178,25 +174,10 @@
     color: var(--text);
     line-height: 1.4;
   }
+  .time-end { font-size: 10px; font-weight: 400; color: var(--muted); }
 
-  .time-end {
-    font-size: 10px;
-    font-weight: 400;
-    color: var(--muted);
-  }
-
-  .name-col {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--text);
-    line-height: 1.3;
-  }
-
-  .name-loc {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
+  .name-col { font-size: 14px; color: var(--text); line-height: 1.3; }
+  .name-loc { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
   .pill {
     font-family: 'DM Mono', monospace;
@@ -207,7 +188,6 @@
     border-radius: 999px;
     white-space: nowrap;
   }
-
   .pill-astor { background: var(--pill-astor-bg); color: var(--pill-astor); }
   .pill-avenue { background: var(--pill-avenue-bg); color: var(--pill-avenue); }
   .pill-hells { background: var(--pill-hells-bg); color: var(--pill-hells); }
@@ -237,7 +217,6 @@
   @media (max-width: 480px) {
     .row { grid-template-columns: 70px 1fr; }
     .pill { display: none; }
-    .name-loc { display: block; }
   }
 </style>
 </head>
@@ -248,19 +227,37 @@
     <h1>Class <span>Schedule</span></h1>
   </header>
 
-  <div class="controls">
-    <div class="day-toggle">
-      <button class="day-btn active" id="btn-today" onclick="setDay('today')">Today</button>
-      <button class="day-btn" id="btn-tomorrow" onclick="setDay('tomorrow')">Tomorrow</button>
+  <div class="control-group">
+    <div class="section-label">Day</div>
+    <div class="controls">
+      <div class="day-toggle">
+        <button class="day-btn active" id="btn-today" onclick="setDay('today')">Today</button>
+        <button class="day-btn" id="btn-tomorrow" onclick="setDay('tomorrow')">Tomorrow</button>
+      </div>
     </div>
-    <div class="sep"></div>
-    <button class="loc-btn active-all" data-loc="all" onclick="setLoc(this,'all')">All</button>
-    <button class="loc-btn" data-loc="Astor" onclick="setLoc(this,'Astor')">Astor Pl</button>
-    <button class="loc-btn" data-loc="Avenue" onclick="setLoc(this,'Avenue')">Avenue A</button>
-    <button class="loc-btn" data-loc="Kitchen" onclick="setLoc(this,'Kitchen')">Hell's Kitchen</button>
-    <button class="loc-btn" data-loc="West" onclick="setLoc(this,'West')">West Village</button>
-    <button class="loc-btn" data-loc="Lexington" onclick="setLoc(this,'Lexington')">Lexington</button>
-    <button class="loc-btn" data-loc="Madison" onclick="setLoc(this,'Madison')">Madison</button>
+  </div>
+
+  <div class="control-group">
+    <div class="section-label">Location</div>
+    <div class="controls" id="loc-controls">
+      <button class="filter-btn active-all" data-loc="all" onclick="setLoc(this,'all')">All</button>
+      <button class="filter-btn" data-loc="Astor" onclick="setLoc(this,'Astor')">Astor Pl</button>
+      <button class="filter-btn" data-loc="Avenue" onclick="setLoc(this,'Avenue')">Avenue A</button>
+      <button class="filter-btn" data-loc="Kitchen" onclick="setLoc(this,'Kitchen')">Hell's Kitchen</button>
+      <button class="filter-btn" data-loc="West" onclick="setLoc(this,'West')">West Village</button>
+      <button class="filter-btn" data-loc="Lexington" onclick="setLoc(this,'Lexington')">Lexington</button>
+      <button class="filter-btn" data-loc="Madison" onclick="setLoc(this,'Madison')">Madison</button>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="section-label" style="display:flex;align-items:center;gap:8px;">
+      Class type
+      <button class="cat-clear" id="cat-clear-btn" onclick="clearCats()" style="display:none">clear</button>
+    </div>
+    <div class="controls" id="cat-controls">
+      <div class="state" style="padding:0.5rem 0;font-size:11px;">loading categories...</div>
+    </div>
   </div>
 
   <div class="meta">
@@ -307,6 +304,7 @@ const LOC_BTN_CLASS = {
 let allClasses = [];
 let activeDay = 'today';
 let activeLoc = 'all';
+let activeCats = new Set();
 
 function toET(utcStr) {
   return new Date(new Date(utcStr).toLocaleString('en-US', { timeZone: 'America/New_York' }));
@@ -343,11 +341,37 @@ function setDay(day) {
 
 function setLoc(el, loc) {
   activeLoc = loc;
-  document.querySelectorAll('.loc-btn').forEach(b => {
-    b.className = 'loc-btn';
-  });
+  document.querySelectorAll('[data-loc]').forEach(b => b.className = 'filter-btn');
   el.classList.add(LOC_BTN_CLASS[loc] || 'active-all');
   render();
+}
+
+function toggleCat(cat) {
+  if (activeCats.has(cat)) {
+    activeCats.delete(cat);
+  } else {
+    activeCats.add(cat);
+  }
+  document.querySelectorAll('[data-cat]').forEach(b => {
+    b.classList.toggle('cat-active', activeCats.has(b.dataset.cat));
+  });
+  document.getElementById('cat-clear-btn').style.display = activeCats.size > 0 ? 'inline' : 'none';
+  render();
+}
+
+function clearCats() {
+  activeCats.clear();
+  document.querySelectorAll('[data-cat]').forEach(b => b.classList.remove('cat-active'));
+  document.getElementById('cat-clear-btn').style.display = 'none';
+  render();
+}
+
+function buildCatButtons() {
+  const cats = [...new Set(allClasses.map(c => c.categoryName).filter(Boolean))].sort();
+  const container = document.getElementById('cat-controls');
+  container.innerHTML = cats.map(cat =>
+    `<button class="filter-btn" data-cat="${cat}" onclick="toggleCat('${cat.replace(/'/g,"\\'")}'">${cat}</button>`
+  ).join('');
 }
 
 function render() {
@@ -356,6 +380,10 @@ function render() {
 
   if (activeLoc !== 'all') {
     filtered = filtered.filter(c => c.location.includes(LOC_MAP[activeLoc] || activeLoc));
+  }
+
+  if (activeCats.size > 0) {
+    filtered = filtered.filter(c => activeCats.has(c.categoryName));
   }
 
   filtered.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
@@ -388,11 +416,10 @@ async function loadData() {
   document.getElementById('count-label').textContent = '—';
 
   try {
-    const res = await fetch(API, {
-      headers: { 'Authorization': TOKEN }
-    });
+    const res = await fetch(API, { headers: { 'Authorization': TOKEN } });
     if (!res.ok) throw new Error('API returned ' + res.status);
     allClasses = await res.json();
+    buildCatButtons();
     render();
   } catch (err) {
     list.innerHTML = '';
