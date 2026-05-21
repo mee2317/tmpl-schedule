@@ -8,13 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #f5f3ee;
-    --surface: #ffffff;
-    --border: #e2ddd6;
-    --text: #1a1814;
-    --muted: #8a8478;
+    --bg: #f5f3ee; --surface: #ffffff; --border: #e2ddd6;
+    --text: #1a1814; --muted: #8a8478;
     --pill-astor-bg: #ede9ff; --pill-astor: #3d2fa0;
     --pill-avenue-bg: #dff5ec; --pill-avenue: #0a5e40;
     --pill-hells-bg: #fde8e0; --pill-hells: #8c3318;
@@ -22,87 +18,20 @@
     --pill-lex-bg: #deeeff; --pill-lex: #0c4080;
     --pill-madison-bg: #e5f4d8; --pill-madison: #2a5210;
   }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 2rem 1rem 4rem;
-  }
-
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 2rem 1rem 4rem; }
   .container { max-width: 680px; margin: 0 auto; }
-
   header { margin-bottom: 2rem; }
-
-  .wordmark {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-  }
-
+  .wordmark { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.4rem; }
   h1 { font-size: 26px; font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; }
   h1 span { font-weight: 500; }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
   .control-group { margin-bottom: 1rem; }
-
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
-  }
-
-  .day-toggle {
-    display: flex;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .day-btn {
-    padding: 7px 16px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    background: transparent;
-    border: none;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.15s;
-  }
+  .controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .day-toggle { display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .day-btn { padding: 7px 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; background: transparent; border: none; color: var(--muted); cursor: pointer; transition: all 0.15s; }
   .day-btn.active { background: var(--text); color: #fff; }
-
-  .filter-btn {
-    padding: 5px 11px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
+  .filter-btn { padding: 5px 11px; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; color: var(--muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
   .filter-btn:hover { border-color: var(--text); color: var(--text); }
-
   .filter-btn.active-astor { background: var(--pill-astor-bg); color: var(--pill-astor); border-color: transparent; }
   .filter-btn.active-avenue { background: var(--pill-avenue-bg); color: var(--pill-avenue); border-color: transparent; }
   .filter-btn.active-hells { background: var(--pill-hells-bg); color: var(--pill-hells); border-color: transparent; }
@@ -110,114 +39,29 @@
   .filter-btn.active-lex { background: var(--pill-lex-bg); color: var(--pill-lex); border-color: transparent; }
   .filter-btn.active-madison { background: var(--pill-madison-bg); color: var(--pill-madison); border-color: transparent; }
   .filter-btn.active-all { background: var(--text); color: #fff; border-color: transparent; }
-
-  .filter-btn.cat-active {
-    background: var(--text);
-    color: #fff;
-    border-color: transparent;
-  }
-
-  .cat-clear {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0 4px;
-    letter-spacing: 0.04em;
-  }
+  .filter-btn.cat-active { background: var(--text); color: #fff; border-color: transparent; }
+  .cat-clear { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); background: none; border: none; cursor: pointer; padding: 0 4px; letter-spacing: 0.04em; }
   .cat-clear:hover { color: var(--text); }
-
-  .meta {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .refresh-btn {
-    background: none;
-    border: none;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    cursor: pointer;
-    letter-spacing: 0.04em;
-    padding: 0;
-  }
+  .meta { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
+  .refresh-btn { background: none; border: none; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); cursor: pointer; letter-spacing: 0.04em; padding: 0; }
   .refresh-btn:hover { color: var(--text); }
-
   .list { display: flex; flex-direction: column; gap: 2px; }
-
-  .row {
-    display: grid;
-    grid-template-columns: 80px 1fr auto;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 14px;
-    background: var(--surface);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    transition: border-color 0.1s;
-  }
+  .row { display: grid; grid-template-columns: 80px 1fr auto; align-items: center; gap: 12px; padding: 12px 14px; background: var(--surface); border-radius: 8px; border: 1px solid var(--border); transition: border-color 0.1s; }
   .row:hover { border-color: #c8c2ba; }
-
-  .time-col {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text);
-    line-height: 1.4;
-  }
+  .time-col { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.4; }
   .time-end { font-size: 10px; font-weight: 400; color: var(--muted); }
-
   .name-col { font-size: 14px; color: var(--text); line-height: 1.3; }
   .name-loc { font-size: 12px; color: var(--muted); margin-top: 2px; }
-
-  .pill {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    padding: 3px 8px;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
+  .pill { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
   .pill-astor { background: var(--pill-astor-bg); color: var(--pill-astor); }
   .pill-avenue { background: var(--pill-avenue-bg); color: var(--pill-avenue); }
   .pill-hells { background: var(--pill-hells-bg); color: var(--pill-hells); }
   .pill-west { background: var(--pill-west-bg); color: var(--pill-west); }
   .pill-lex { background: var(--pill-lex-bg); color: var(--pill-lex); }
   .pill-madison { background: var(--pill-madison-bg); color: var(--pill-madison); }
-
-  .state {
-    text-align: center;
-    padding: 3rem 1rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-  }
-
-  .error-msg {
-    background: #fff5f5;
-    border: 1px solid #f5c6c6;
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
-    font-size: 13px;
-    color: #8c2020;
-    margin-bottom: 1rem;
-  }
-
-  @media (max-width: 480px) {
-    .row { grid-template-columns: 70px 1fr; }
-    .pill { display: none; }
-  }
+  .state { text-align: center; padding: 3rem 1rem; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+  .error-msg { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 8px; padding: 1rem 1.25rem; font-size: 13px; color: #8c2020; margin-bottom: 1rem; }
+  @media (max-width: 480px) { .row { grid-template-columns: 70px 1fr; } .pill { display: none; } }
 </style>
 </head>
 <body>
@@ -239,7 +83,7 @@
 
   <div class="control-group">
     <div class="section-label">Location</div>
-    <div class="controls" id="loc-controls">
+    <div class="controls">
       <button class="filter-btn active-all" data-loc="all" onclick="setLoc(this,'all')">All</button>
       <button class="filter-btn" data-loc="Astor" onclick="setLoc(this,'Astor')">Astor Pl</button>
       <button class="filter-btn" data-loc="Avenue" onclick="setLoc(this,'Avenue')">Avenue A</button>
@@ -251,12 +95,12 @@
   </div>
 
   <div class="control-group">
-    <div class="section-label" style="display:flex;align-items:center;gap:8px;">
+    <div class="section-label">
       Class type
       <button class="cat-clear" id="cat-clear-btn" onclick="clearCats()" style="display:none">clear</button>
     </div>
     <div class="controls" id="cat-controls">
-      <div class="state" style="padding:0.5rem 0;font-size:11px;">loading categories...</div>
+      <div class="state" style="padding:0.5rem 0;font-size:11px;">loading...</div>
     </div>
   </div>
 
@@ -270,162 +114,127 @@
 </div>
 
 <script>
-const TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaXZpc2lvbiI6MSwibmFtZSI6IlRNUEwiLCJpYXQiOjE2MTQ2MjU3NDJ9.YNNKuNfnFoOwyriEE6shZA3KbPggWAm4ZsQsBCdD6Jo';
-const API = 'https://api.empireholdings.com/api/scheduler/classes/';
+var TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaXZpc2lvbiI6MSwibmFtZSI6IlRNUEwiLCJpYXQiOjE2MTQ2MjU3NDJ9.YNNKuNfnFoOwyriEE6shZA3KbPggWAm4ZsQsBCdD6Jo';
+var API = 'https://api.empireholdings.com/api/scheduler/classes/';
+var allClasses = [];
+var activeDay = 'today';
+var activeLoc = 'all';
+var activeCats = [];
+var catList = [];
 
-const LOC_MAP = {
-  'Astor': 'Astor Place',
-  'Avenue': 'Avenue A',
-  'Kitchen': "Hell's Kitchen",
-  'West': 'West Village',
-  'Lexington': 'Lexington',
-  'Madison': 'Madison'
-};
+var LOC_MAP = {'Astor':'Astor Place','Avenue':'Avenue A','Kitchen':"Hell's Kitchen",'West':'West Village','Lexington':'Lexington','Madison':'Madison'};
+var LOC_PILL = {'Astor Place':'pill-astor','Avenue A':'pill-avenue',"Hell's Kitchen":'pill-hells','West Village':'pill-west','Lexington':'pill-lex','Madison':'pill-madison'};
+var LOC_BTN = {'all':'active-all','Astor':'active-astor','Avenue':'active-avenue','Kitchen':'active-hells','West':'active-west','Lexington':'active-lex','Madison':'active-madison'};
 
-const LOC_PILL = {
-  'Astor Place': 'pill-astor',
-  'Avenue A': 'pill-avenue',
-  "Hell's Kitchen": 'pill-hells',
-  'West Village': 'pill-west',
-  'Lexington': 'pill-lex',
-  'Madison': 'pill-madison'
-};
-
-const LOC_BTN_CLASS = {
-  'all': 'active-all',
-  'Astor': 'active-astor',
-  'Avenue': 'active-avenue',
-  'Kitchen': 'active-hells',
-  'West': 'active-west',
-  'Lexington': 'active-lex',
-  'Madison': 'active-madison'
-};
-
-let allClasses = [];
-let activeDay = 'today';
-let activeLoc = 'all';
-let activeCats = new Set();
-
-function toET(utcStr) {
-  return new Date(new Date(utcStr).toLocaleString('en-US', { timeZone: 'America/New_York' }));
-}
-
-function formatTime(utcStr) {
-  const d = toET(utcStr);
-  let h = d.getHours(), m = d.getMinutes();
-  const ampm = h >= 12 ? 'pm' : 'am';
-  h = h % 12 || 12;
-  return h + (m ? ':' + String(m).padStart(2, '0') : '') + '\u202f' + ampm;
-}
-
-function getETDateStr(utcStr) {
-  return toET(utcStr).toDateString();
-}
-
-function getTodayET() {
-  return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })).toDateString();
-}
-
-function getTomorrowET() {
-  const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
-  d.setDate(d.getDate() + 1);
-  return d.toDateString();
-}
+function toET(s) { return new Date(new Date(s).toLocaleString('en-US',{timeZone:'America/New_York'})); }
+function fmtTime(s) { var d=toET(s),h=d.getHours(),m=d.getMinutes(),ap=h>=12?'pm':'am'; h=h%12||12; return h+(m?':'+('0'+m).slice(-2):'')+'\u202f'+ap; }
+function dateStr(s) { return toET(s).toDateString(); }
+function todayET() { return new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'})).toDateString(); }
+function tomorrowET() { var d=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'})); d.setDate(d.getDate()+1); return d.toDateString(); }
 
 function setDay(day) {
   activeDay = day;
-  document.getElementById('btn-today').classList.toggle('active', day === 'today');
-  document.getElementById('btn-tomorrow').classList.toggle('active', day === 'tomorrow');
+  document.getElementById('btn-today').className = 'day-btn' + (day==='today'?' active':'');
+  document.getElementById('btn-tomorrow').className = 'day-btn' + (day==='tomorrow'?' active':'');
   render();
 }
 
 function setLoc(el, loc) {
   activeLoc = loc;
-  document.querySelectorAll('[data-loc]').forEach(b => b.className = 'filter-btn');
-  el.classList.add(LOC_BTN_CLASS[loc] || 'active-all');
+  var btns = document.querySelectorAll('[data-loc]');
+  for (var i=0;i<btns.length;i++) btns[i].className = 'filter-btn';
+  el.className = 'filter-btn ' + (LOC_BTN[loc]||'active-all');
   render();
 }
 
-function toggleCat(cat) {
-  if (activeCats.has(cat)) {
-    activeCats.delete(cat);
-  } else {
-    activeCats.add(cat);
+function toggleCat(i) {
+  var cat = catList[i];
+  var idx = activeCats.indexOf(cat);
+  if (idx === -1) { activeCats.push(cat); } else { activeCats.splice(idx,1); }
+  var btns = document.querySelectorAll('[data-catidx]');
+  for (var j=0;j<btns.length;j++) {
+    var ci = parseInt(btns[j].getAttribute('data-catidx'));
+    btns[j].className = 'filter-btn' + (activeCats.indexOf(catList[ci])!==-1?' cat-active':'');
   }
-  document.querySelectorAll('[data-cat]').forEach(b => {
-    b.classList.toggle('cat-active', activeCats.has(b.dataset.cat));
-  });
-  document.getElementById('cat-clear-btn').style.display = activeCats.size > 0 ? 'inline' : 'none';
+  document.getElementById('cat-clear-btn').style.display = activeCats.length > 0 ? 'inline' : 'none';
   render();
 }
 
 function clearCats() {
-  activeCats.clear();
-  document.querySelectorAll('[data-cat]').forEach(b => b.classList.remove('cat-active'));
+  activeCats = [];
+  var btns = document.querySelectorAll('[data-catidx]');
+  for (var i=0;i<btns.length;i++) btns[i].className = 'filter-btn';
   document.getElementById('cat-clear-btn').style.display = 'none';
   render();
 }
 
 function buildCatButtons() {
-  const cats = [...new Set(allClasses.map(c => c.categoryName).filter(Boolean))].sort();
-  const container = document.getElementById('cat-controls');
-  container.innerHTML = cats.map(cat =>
-    `<button class="filter-btn" data-cat="${cat}" onclick="toggleCat('${cat.replace(/'/g,"\\'")}'">${cat}</button>`
-  ).join('');
+  var seen = {};
+  var cats = [];
+  for (var i=0;i<allClasses.length;i++) {
+    var c = allClasses[i].categoryName;
+    if (c && !seen[c]) { seen[c]=true; cats.push(c); }
+  }
+  cats.sort();
+  catList = cats;
+  var html = '';
+  for (var j=0;j<cats.length;j++) {
+    html += '<button class="filter-btn" data-catidx="'+j+'" onclick="toggleCat('+j+')">'+cats[j]+'</button>';
+  }
+  document.getElementById('cat-controls').innerHTML = html;
 }
 
 function render() {
-  const targetDate = activeDay === 'today' ? getTodayET() : getTomorrowET();
-  let filtered = allClasses.filter(c => getETDateStr(c.startDate) === targetDate);
-
-  if (activeLoc !== 'all') {
-    filtered = filtered.filter(c => c.location.includes(LOC_MAP[activeLoc] || activeLoc));
+  var target = activeDay==='today' ? todayET() : tomorrowET();
+  var filtered = [];
+  for (var i=0;i<allClasses.length;i++) {
+    var c = allClasses[i];
+    if (dateStr(c.startDate) !== target) continue;
+    if (activeLoc !== 'all' && c.location.indexOf(LOC_MAP[activeLoc]||activeLoc)===-1) continue;
+    if (activeCats.length > 0 && activeCats.indexOf(c.categoryName)===-1) continue;
+    filtered.push(c);
   }
+  filtered.sort(function(a,b){ return new Date(a.startDate)-new Date(b.startDate); });
 
-  if (activeCats.size > 0) {
-    filtered = filtered.filter(c => activeCats.has(c.categoryName));
-  }
-
-  filtered.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
-
-  const list = document.getElementById('list');
-  const countLabel = document.getElementById('count-label');
-  countLabel.textContent = filtered.length + ' class' + (filtered.length !== 1 ? 'es' : '');
+  document.getElementById('count-label').textContent = filtered.length + (filtered.length===1?' class':' classes');
 
   if (filtered.length === 0) {
-    list.innerHTML = '<div class="state">no classes for this selection</div>';
+    document.getElementById('list').innerHTML = '<div class="state">no classes for this selection</div>';
     return;
   }
 
-  list.innerHTML = filtered.map(c => {
-    const locName = c.location.replace('TMPL - ', '');
-    const pillClass = LOC_PILL[locName] || '';
-    return `<div class="row">
-      <div class="time-col">${formatTime(c.startDate)}<div class="time-end">→ ${formatTime(c.endDate)}</div></div>
-      <div class="name-col">${c.className}<div class="name-loc">${locName}</div></div>
-      <span class="pill ${pillClass}">${locName}</span>
-    </div>`;
-  }).join('');
+  var html = '';
+  for (var i=0;i<filtered.length;i++) {
+    var c = filtered[i];
+    var loc = c.location.replace('TMPL - ','');
+    var pill = LOC_PILL[loc]||'';
+    html += '<div class="row"><div class="time-col">'+fmtTime(c.startDate)+'<div class="time-end">→ '+fmtTime(c.endDate)+'</div></div><div class="name-col">'+c.className+'<div class="name-loc">'+loc+'</div></div><span class="pill '+pill+'">'+loc+'</span></div>';
+  }
+  document.getElementById('list').innerHTML = html;
 }
 
-async function loadData() {
-  const list = document.getElementById('list');
-  const errBox = document.getElementById('error-box');
+function loadData() {
+  var list = document.getElementById('list');
+  var errBox = document.getElementById('error-box');
   errBox.style.display = 'none';
   list.innerHTML = '<div class="state">loading...</div>';
   document.getElementById('count-label').textContent = '—';
 
-  try {
-    const res = await fetch(API, { headers: { 'Authorization': TOKEN } });
-    if (!res.ok) throw new Error('API returned ' + res.status);
-    allClasses = await res.json();
-    buildCatButtons();
-    render();
-  } catch (err) {
-    list.innerHTML = '';
-    errBox.style.display = 'block';
-    errBox.textContent = 'Could not load schedule. The API may be down or the token may have changed. Open DevTools → Network to grab a fresh token and update line 1 of the script. (' + err.message + ')';
-  }
+  fetch(API, {headers:{'Authorization':TOKEN}})
+    .then(function(res) {
+      if (!res.ok) throw new Error('API returned ' + res.status);
+      return res.json();
+    })
+    .then(function(data) {
+      allClasses = data;
+      buildCatButtons();
+      render();
+    })
+    .catch(function(err) {
+      list.innerHTML = '';
+      errBox.style.display = 'block';
+      errBox.textContent = 'Could not load schedule. The token may have changed — open DevTools Network tab to grab a fresh one. (' + err.message + ')';
+    });
 }
 
 loadData();
